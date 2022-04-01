@@ -20,8 +20,6 @@ const beers = [
   { name: 'Stolen Fruit', abv: 4.6, label: 'https://s3.amazonaws.com/brewerydbapi/beer/YGT30k/upload_uVCHP7-large.png', type: 'Wheat' },
 ];
 
-
-
 function orderBeers(beers) {
   return beers
     .sort((a, b) => a.type > b.type ? 1 : -1);
@@ -55,15 +53,14 @@ function setPrice(beers) {
 
   );
 
-
 }
 console.log(
   setPrice(beers));
 
 console.log("---------------------- E X T R A E R N O M B R E ---------------------------");
 
-
 function extrar(label) {
+
   return label.substr(-23, 23)
 
 }
@@ -71,18 +68,19 @@ function extrar(label) {
 
 function insert(beers) {
 
-  console.log(
-    beers.map(beer => ({
-      name: beer.name,
-      abv: beer.abv,
-      label: beer.label,
-      file_name: extrar(beer.label),
-      type: beer.type,
-    })
-    ));
+  return beers.map(beer => ({
+    name: beer.name,
+    abv: beer.abv,
+    label: beer.label,
+    file_name: extrar(beer.label),
+    type: beer.type,
+  })
+  );
 }
 
-insert(beers);
+console.log(
+  insert(beers)
+  );
 
 console.log("------------------------O R D E N A R P O R P R E C I O-------------------------------");
 
@@ -92,5 +90,7 @@ function OrdenarPorPrecio(beers) {
 
 }
 console.log(
-  OrdenarPorPrecio(setPrice(beers) )
-  )
+
+  OrdenarPorPrecio(setPrice(beers))
+
+);
