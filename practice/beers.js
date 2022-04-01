@@ -13,33 +13,84 @@
   Beers
 */
 const beers = [
-    { name: 'Purple Iris', abv: 6.8, label: 'https://s3.amazonaws.com/brewerydbapi/beer/dMLwGo/upload_yiUllE-large.png', type: 'IPA' },
-    { name: 'Orange Blossom Pilsner', abv: 5.5, label: 'https://s3.amazonaws.com/brewerydbapi/beer/Rczcb9/upload_9Nhxxl-large.png', type: 'Pilsner' },
-    { name: 'Darkness', abv: 4.2, label: 'https://s3.amazonaws.com/brewerydbapi/beer/lnxbIV/upload_idNXFf-large.png', type: 'Stout' },
-    { name: 'Belgian Wit', abv: 5.4, label: 'https://s3.amazonaws.com/brewerydbapi/beer/3CvVQG/upload_xOMnlK-large.png', type: 'Wheat' },
-    { name: 'Stolen Fruit', abv: 4.6, label: 'https://s3.amazonaws.com/brewerydbapi/beer/YGT30k/upload_uVCHP7-large.png', type: 'Wheat' },
-  ];
+  { name: 'Purple Iris', abv: 6.8, label: 'https://s3.amazonaws.com/brewerydbapi/beer/dMLwGo/upload_yiUllE-large.png', type: 'IPA' },
+  { name: 'Orange Blossom Pilsner', abv: 5.5, label: 'https://s3.amazonaws.com/brewerydbapi/beer/Rczcb9/upload_9Nhxxl-large.png', type: 'Pilsner' },
+  { name: 'Darkness', abv: 4.2, label: 'https://s3.amazonaws.com/brewerydbapi/beer/lnxbIV/upload_idNXFf-large.png', type: 'Stout' },
+  { name: 'Belgian Wit', abv: 5.4, label: 'https://s3.amazonaws.com/brewerydbapi/beer/3CvVQG/upload_xOMnlK-large.png', type: 'Wheat' },
+  { name: 'Stolen Fruit', abv: 4.6, label: 'https://s3.amazonaws.com/brewerydbapi/beer/YGT30k/upload_uVCHP7-large.png', type: 'Wheat' },
+];
 
-function orderBeers(beers){
+
+
+function orderBeers(beers) {
   return beers
-    .sort((a,b)=> a.type > b.type ? 1:-1);
+    .sort((a, b) => a.type > b.type ? 1 : -1);
 }
 
 console.log(orderBeers(beers));
 
-function setPrice(beers){
-console.log(
-  
-  beers.map(beer => ({
-   
-       name: beer.name,
-       abv: beer.abv
-    
-   
- })  
+console.log("---------------------- S E T P R I C E ---------------------------");
 
-));
+function calcularPrecio(name, abv) {
+
+  if (abv < 5.0) {
+    return 300;
+  } else if (abv >= 5.0 && name != 'Purple Iris') {
+    return 350;
+  } else {
+    return 320;
+  }
 
 }
 
-setPrice(beers);
+function setPrice(beers) {
+
+  return beers.map(beer => ({
+    name: beer.name,
+    abv: beer.abv,
+    label: beer.label,
+    type: beer.type,
+    price: calcularPrecio(beer.name, beer.abv)
+  })
+
+  );
+
+
+}
+console.log(
+  setPrice(beers));
+
+console.log("---------------------- E X T R A E R N O M B R E ---------------------------");
+
+
+function extrar(label) {
+  return label.substr(-23, 23)
+
+}
+
+
+function insert(beers) {
+
+  console.log(
+    beers.map(beer => ({
+      name: beer.name,
+      abv: beer.abv,
+      label: beer.label,
+      file_name: extrar(beer.label),
+      type: beer.type,
+    })
+    ));
+}
+
+insert(beers);
+
+console.log("------------------------O R D E N A R P O R P R E C I O-------------------------------");
+
+function OrdenarPorPrecio(beers) {
+
+  return beers.sort((a, b) => a.price > b.price ? 1 : -1);
+
+}
+console.log(
+  OrdenarPorPrecio(setPrice(beers) )
+  )
