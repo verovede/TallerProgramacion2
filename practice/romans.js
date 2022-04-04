@@ -15,7 +15,7 @@ Output: 3
 Explanation: III = 3.
 
  */
-const NroRomano = "M";
+const NroRomano = "CIV";
 
 const stringToInt = {
     'I': 1,
@@ -31,9 +31,9 @@ const stringToInt = {
 //PASO DE STRING A CHAR CON EL SPLIT Y OBTENGO UN OBJETO
 const arrayRomano = NroRomano.split('');
 
-console.log("Este es el string " + NroRomano + " " + typeof NroRomano)
+console.log(NroRomano)
 
-console.log("Este es el array " + arrayRomano + " " + typeof arrayRomano)
+console.log(arrayRomano)
 
 
 
