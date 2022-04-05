@@ -29,29 +29,52 @@ const str = `<ul>
 <li data-time="3:31">Flexbox Video</li>
 </ul>`;
 
-function htmlASegundos(string) {
+const tipoVideo = "Flexbox Video"
 
-    //SE QUEDA CON LO QUE ESTA DENTRO DE LAS COMILLAS
-    const strSeparado = string.match(/"([^"]*)"/g)
+const tipoVideo2 = "Redux Video"
 
+function htmlASegundos(string, tipoVideo) {
+
+    //SEPARAR LAS LINEAS
+    const separadosPorLineas = string.split("<li")
+
+    //FILTRO LAS LINEAS QUE TIENEN EL TIPOVIDEO
+
+    const arrayDeString = new Array()
+    for (let i = 0; i < separadosPorLineas.length; i++) {
+
+        if (separadosPorLineas[i].includes(tipoVideo)) {
+
+            // MATCH devuelve el tiempo entre " "
+            const strSeparado = separadosPorLineas[i].match(/"([^"]*)"/g)
+           
+            // toString() PASA DE ARRAY A STRING
+            const nuevoString = strSeparado.toString()
+
+            // REPLACE SACA LAS ""
+            const sinComi = nuevoString.replace(/['"]+/g, '')
+
+            //
+         arrayDeString.push(sinComi)
+        }
+    }
     // RECORRE LOS STRING SEPARADOS
     let suma = 0;
-    for (let i = 0; i < strSeparado.length; i++) {
-
-        // SACA LAS ""
-        const sinComi = strSeparado[i].replace(/['"]+/g, '')
+    for (let i = 0; i < arrayDeString.length; i++) {
 
         // SEPARA EN DOS OBJETOS EN FUNCION DE LOS :
-        var a = sinComi.split(':');
+        var a = arrayDeString[i].split(':');
 
         // MULTIPLICA EN FUNCION DE LOS MINUTOS / SEGUNDOS
-        const sec = a[0] * 60 + a[1] * 1;  
-        
+        const segundos = a[0] * 60 + a[1] * 1;
+
         // ACUMULA LOS SEGUNDOS POR CADA REGISTRO
-        suma = suma + sec
+        suma = suma + segundos
     }
 
     return suma;
 }
 
-console.log("SUMAS TOTAL: " + htmlASegundos(str))
+console.log("SUMAS TOTAL: " + htmlASegundos(str, tipoVideo))
+
+console.log("SUMAS TOTAL: " + htmlASegundos(str, tipoVideo2))
