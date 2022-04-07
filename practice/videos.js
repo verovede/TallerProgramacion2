@@ -47,7 +47,7 @@ function htmlASegundos(string, tipoVideo) {
 
             // MATCH devuelve el tiempo entre " "
             const strSeparado = separadosPorLineas[i].match(/"([^"]*)"/g)
-           
+
             // toString() PASA DE ARRAY A STRING
             const nuevoString = strSeparado.toString()
 
@@ -55,7 +55,7 @@ function htmlASegundos(string, tipoVideo) {
             const sinComi = nuevoString.replace(/['"]+/g, '')
 
             //
-         arrayDeString.push(sinComi)
+            arrayDeString.push(sinComi)
         }
     }
     // RECORRE LOS STRING SEPARADOS
@@ -78,3 +78,31 @@ function htmlASegundos(string, tipoVideo) {
 console.log("SUMAS TOTAL: " + htmlASegundos(str, tipoVideo))
 
 console.log("SUMAS TOTAL: " + htmlASegundos(str, tipoVideo2))
+
+function getVideos(str) {
+    //separo en lineas
+    return str
+        .replace('<ul>', '') // elimina el <ul>
+        .replace('</ul>', '') // elimins el </ul>                
+        .split('</li>') // divide el str en una array de string
+        .slice(0, -1) //devuelve una porcion del array 0 es donde empieza y -1 todos menos el ultimo
+        .map(video => ({
+            type: video.split('>')[1],
+            minutos: parseInt(video.split('"')[1].split(':')[0]),
+            segundos: parseInt(video.split('"')[1].split(':')[1]),
+        }))
+
+}
+function totalSegPorTipo(videos, type) {
+    let totalSegundos = 0;
+    videos
+        .filter(video => video.type === type)
+        .forEach(video => {
+            totalSegundos = totalSegundos + video.segundos + (video.minutos * 60)
+
+        });
+    return totalSegundos;
+}
+
+console.log(totalSegPorTipo(getVideos(str), "Flexbox Video"))
+console.log(totalSegPorTipo(getVideos(str), "Redux Video"))
