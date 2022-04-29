@@ -16,4 +16,6 @@
     "url": "https://github.com/verovede/TallerProgramacion2/issues"
   },
   "homepage": "https://github.com/verovede/TallerProgramacion2#readme"
+  ,
+  "type": "module"
 }
