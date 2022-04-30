@@ -30,9 +30,9 @@ fs.readFile(path, 'utf-8', (err, data) => {
                     if (!err) {
                         console.log("Listado con cambio")
                         console.log(data)
-                    }
+                    } else { console.log("No se encontro el archvo") }
                 })
-            }
+            } else { console.log("No se pudo escirbir el archivo") }
         })
 
     } else { console.log("No se encontro el archivo") }
