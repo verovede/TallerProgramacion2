@@ -1,4 +1,4 @@
-[
+{"inventors": [
     {
         "_id": 1,
         "first": "Albert",
@@ -67,8 +67,8 @@
     },
     {
         "_id": 6,
-        "first": "Nicolaus",
+        "first": "NicolausS",
         "last": "Copernicus",
         "year": 1473
     }
-]
+]}

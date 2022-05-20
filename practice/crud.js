@@ -1,5 +1,5 @@
 // PERSISTIDO EN EL JSON inventors.json
-const fs = require('fs');
+import fs from 'fs';
 const PATH = './inventors.json';
 
 let inventors = JSON.parse(fs.readFileSync(PATH, 'utf-8'));
